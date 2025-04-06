@@ -1,22 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const HeroSection = () => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Check if profile image exists
-  useEffect(() => {
-    const img = new Image();
-    img.src = '/profile.jpg'; // This will look for profile.jpg in the public folder
-    img.onload = () => {
-      setImageLoaded(true);
-    };
-    img.onerror = () => {
-      setImageLoaded(false);
-    };
-  }, []);
-
   return (
     <section className="min-h-screen flex items-center pt-20" id="hero">
       <div className="section-container">
@@ -45,22 +32,23 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="flex-1 flex justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-600 to-accent/30 p-1 animate-fade-in">
-              <div className="absolute inset-1 rounded-full bg-background flex items-center justify-center overflow-hidden">
-                {imageLoaded ? (
-                  <img 
-                    src="/profile.jpg" 
-                    alt="Shrey Mehta" 
-                    className="w-full h-full object-cover"
-                    onError={() => setImageLoaded(false)} 
-                  />
-                ) : (
+          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-600 to-accent/30 p-1 animate-fade-in">
+            <div className="absolute inset-1 rounded-full bg-background flex items-center justify-center overflow-hidden">
+              <OptimizedImage 
+                src="/profile.jpg"
+                webpSrc="/profile.webp"
+                placeholderSrc="/profile-placeholder.webp"
+                alt="Shrey Mehta"
+                className="w-full h-full object-cover"
+                containerClassName="w-full h-full"
+                loadingClassName="bg-background/80 backdrop-blur-sm"
+                animationDuration={800}
+                fallback={
                   <div className="font-mono text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-accent">
                     SM
                   </div>
-                )}
-              </div>
+                }
+              />
             </div>
           </div>
         </div>
