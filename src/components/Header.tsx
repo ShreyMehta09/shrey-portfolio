@@ -18,8 +18,8 @@ const Header = () => {
   const handleDownloadResume = () => {
     // In a real scenario, this would be a link to the actual resume file
     const link = document.createElement('a');
-    link.href = '/Shrey-Mehta-Resume.pdf'; // This would be the actual path to the resume
-    link.download = 'Shrey-Mehta-Resume.pdf';
+    link.href = '/Shrey_Mehta_April.pdf'; // This would be the actual path to the resume
+    link.download = 'Shrey_Mehta_April.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
